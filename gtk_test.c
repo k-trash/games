@@ -1,21 +1,50 @@
+#include <stdlib.h>
 #include <gtk/gtk.h>
 
 void cb_button_clicked(GtkWidget *button, gpointer user_data);
 
 int main(int argc, char *argv[]){
-	GtkWidget* window;
-	GtkWidget* button;
+	GtkWidget *window;
+
+	if(argc != 2){
+		g_print("No Image File\n");
+		exit(1);
+	}
 
 	gtk_init(&argc, &argv);
 
 	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-	button = gtk_button_new_with_label("Quit");
 
 	gtk_widget_set_size_request(window, 300, 200);
-	gtk_container_add(GTK_CONTAINER(window), button);
-	g_signal_connect(G_OBJECT(button), "clicked", 
-			G_CALLBACK(cb_button_clicked), NULL);
+	{
+		GtkWidget *vbox;
+		
+		vbox = gtk_vbox_new(FALSE, 2);
+		
+		gtk_container_add(GTK_CONTAINER(window), vbox);
+		{
+			GtkWidget *scroll_window;
+			GtkWidget *button;
+	
+			scroll_window = gtk_scrolled_window_new(NULL,NULL);
+			
+			gtk_box_pack_start(GTK_BOX(vbox), scroll_window, TRUE, TRUE, 0);
+			gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scroll_window), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+			{
+				GtkWidget *image;
+		
+				image = gtk_image_new_from_file(argv[1]);
+		
+				gtk_scrolled_window_add_with_viewport(GTK_SCROLLED_WINDOW(scroll_window), image);
+			}
+			button = gtk_button_new_with_label("Quit");
 
+			g_signal_connect(G_OBJECT(button), "clicked", G_CALLBACK(cb_button_clicked), NULL);
+
+			gtk_box_pack_start(GTK_BOX(vbox), button, FALSE, FALSE, 0);
+		}
+	}
+	
 	gtk_widget_show_all(window);
 
 	gtk_main();
