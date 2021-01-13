@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define SET_NUM 1	//g‚¤ƒJ[ƒh‚ÌƒZƒbƒg”
+#define SET_NUM 1	//?g???J?[?h?ÌƒZ?b?g??
 
 typedef enum Marks {SPADE, CLUB, HEART, DIAMOND}Marks;
 
@@ -12,7 +12,7 @@ typedef struct Card{
 	unsigned short int flag : 1;
 }Card;
 
-unsigned short int choiceCard(Card *cards_);	//ƒJ[ƒh‚ğ‘I‚ÔŠÖ” –ß‚è’l:‰½–‡–Ú‚ÌƒJ[ƒh‚© ˆø”:ƒJ[ƒh‚Ì”z—ñ
+unsigned short int choiceCard(Card *cards_);	//?J?[?h???I?ÔŠÖ? ?ß‚??l:?????Ú‚ÌƒJ?[?h?? ????:?J?[?h?Ì”z??
 unsigned short int calc(int sum, int num);
 
 int main(void){
@@ -22,7 +22,7 @@ int main(void){
 
 	srand((unsigned int)time(NULL));
 	
-	for(i = 0;i < 4;i++){		//ˆÈ‰ºƒJ[ƒh‚ÌŠ„“–
+	for(i = 0;i < 4;i++){		//?È‰??J?[?h?ÌŠ???
 		for(short int j = 1;j <= 13;j++){
 			for(short int k = 0;k < SET_NUM;k++){
 				cards[count].number = j;
@@ -48,22 +48,22 @@ int main(void){
 		printf("%d %d\n", cards[dealer[i]].number, cards[dealer[i]].mark);
 	}
 	
-	//ƒvƒŒƒCƒ„[‚Ìƒ^[ƒ“
+	//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¿ãƒ¼ãƒ³
 	unsigned short int signal;
 	signal = 1;
 	i = 2;
-	printf("`ƒvƒŒƒCƒ„[‚Ìƒ^[ƒ“`\n");
+	printf("ã€œãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¿ãƒ¼ãƒ³ã€œ\n");
 	while(signal){
-		printf("‚ ‚È‚½‚Ì‡Œv:%d\nƒqƒbƒgF0 ƒXƒ^ƒ“ƒhF1\n", sump);
+		printf("ã‚ãªãŸã®åˆè¨ˆ:%d\nãƒ’ãƒƒãƒˆ:0 ã‚¹ã‚¿ãƒ³ãƒ‰:1\n", sump);
 		int respones;
 		scanf("%d", &respones);
 		
 		if(respones == 0){
 			player[i] = choiceCard(cards);
-			printf("%d %d‚ªo‚Ü‚µ‚½B\n", cards[player[i]].number, cards[player[i]].mark);
+			printf("%d %dãŒå‡ºã¾ã—ãŸã€‚\n", cards[player[i]].number, cards[player[i]].mark);
 			sump = calc(sump, cards[player[i]].number);
 			if(sump > 21){
-				printf("ƒvƒŒƒCƒ„[‚ªƒo[ƒXƒg\n");
+				printf("ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒãƒãƒ¼ã‚¹ãƒˆ\n");
 				sump = 0;
 				signal--;
 			}
@@ -75,18 +75,18 @@ int main(void){
 		i++;
 	}
 	
-	//ƒfƒB[ƒ‰[‚Ìƒ^[ƒ“
+	//ãƒ‡ã‚£ãƒ¼ãƒ©ãƒ¼ã®ã‚¿ãƒ¼ãƒ³
 	signal = 1;
 	i = 2;
-	printf("`ƒfƒB[ƒ‰[‚Ìƒ^[ƒ“`\n");
+	printf("ã€œãƒ‡ã‚£ãƒ¼ãƒ©ãƒ¼ã®ã‚¿ãƒ¼ãƒ³ã€œ\n");
 	while(signal){
-		printf("ƒfƒB[ƒ‰[‚Ì‡Œv:%d\n", sumd);
+		printf("ãƒ‡ã‚£ãƒ¼ãƒ©ãƒ¼ã®åˆè¨ˆ:%d\n", sumd);
 		if(sumd < 17 || sumd < sump){
 			dealer[i] = choiceCard(cards);
 			sumd = calc(sumd, cards[dealer[i]].number);
-			printf("ƒfƒB[ƒ‰[‚Íƒqƒbƒg‚ğ‘I‘ğB\n%d %d‚ªo‚Ü‚µ‚½B\n", cards[dealer[i]].number, cards[dealer[i]].mark, sumd);
+			printf("ãƒ‡ã‚£ãƒ¼ãƒ©ãƒ¼ã¯ãƒ’ãƒƒãƒˆã‚’é¸æŠã€‚\n%d %dãŒå‡ºã¾ã—ãŸã€‚\n", cards[dealer[i]].number, cards[dealer[i]].mark);
 			if(sumd > 21){
-				printf("ƒfƒB[ƒ‰[‚ªƒo[ƒXƒg\n");
+				printf("ãƒ‡ã‚£ãƒ¼ãƒ©ãƒ¼ãŒãƒãƒ¼ã‚¹ãƒˆ\n");
 				sumd = 0;
 				signal--;
 			}
@@ -102,7 +102,7 @@ int main(void){
 	}else if(sump < sumd || sump == 0){
 		printf("You Lose\n");
 	}else{
-		printf("ˆø‚«•ª‚¯\n");
+		printf("å¼•ãåˆ†ã‘\n");
 	}
 	
 
