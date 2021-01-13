@@ -1,30 +1,28 @@
 #include <stdlib.h>
 #include <gtk/gtk.h>
 
-void cb_button_clicked(GtkWidget *button, gpointer user_data);
+void cbButtonClicked(GtkWidget *button_, gpointer user_data_);
+void changeCards(GtkWidget *button_, gpointer user_data_);
+
+GtkWidget *window;
+GtkWidget *vbox;
 
 int main(int argc, char *argv[]){
-	GtkWidget *window;
-	GtkWidget *vbox;
 	GtkWidget *vbox_image;
-	//GtkWidget *scroll_window;
-	GtkWidget *button;
+	GtkWidget *hbox_button;
+	GtkWidget *button_1;
+	GtkWidget *button_2;
 	GtkWidget *image_1;	
 	GtkWidget *image_2;	
-	
-	
-	//if(argc != 2){
-	//	g_print("No Image File\n");
-	//	exit(1);
-	//}
 
 	gtk_init(&argc, &argv);
 
 	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	vbox = gtk_vbox_new(FALSE, 2);
 	vbox_image = gtk_hbox_new(FALSE, 2);
-	//scroll_window = gtk_scrolled_window_new(NULL,NULL);
-	button = gtk_button_new_with_label("Quit");
+	hbox_button = gtk_hbox_new(FALSE, 2);
+	button_1 = gtk_button_new_with_label("Quit");
+	button_2 = gtk_button_new_with_label("Button");
 	image_1 = gtk_image_new_from_file("./cards/spade_1.png");
 	image_2 = gtk_image_new_from_file("./cards/spade_2.png");
 	
@@ -32,22 +30,20 @@ int main(int argc, char *argv[]){
 	
 	gtk_container_add(GTK_CONTAINER(window), vbox);
 
-	//gtk_box_pack_start(GTK_BOX(vbox_image), window, TRUE, TRUE, 0);
-	//gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scroll_window), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);	
-	
-	//gtk_scrolled_window_add_with_viewport(GTK_SCROLLED_WINDOW(scroll_window), image_1);
-	//gtk_scrolled_window_add_with_viewport(GTK_SCROLLED_WINDOW(scroll_window), image_2);
-	
 	gtk_box_pack_start(GTK_BOX(vbox), vbox_image, TRUE, TRUE, 0);
 	
 	gtk_box_pack_start(GTK_BOX(vbox_image), image_1, TRUE, TRUE, 0);
 	gtk_box_pack_start(GTK_BOX(vbox_image), image_2, TRUE, TRUE, 0);
 
-	//vbox_image = gtk_hbox_new(FALSE, 2);
-	
-	g_signal_connect(G_OBJECT(button), "clicked", G_CALLBACK(cb_button_clicked), NULL);
+	gtk_box_pack_start(GTK_BOX(vbox), hbox_button, TRUE, TRUE, 0);
 
-	gtk_box_pack_start(GTK_BOX(vbox), button, FALSE, FALSE, 0);
+	g_signal_connect(G_OBJECT(button_1), "clicked", G_CALLBACK(cbButtonClicked), NULL);
+
+	gtk_box_pack_start(GTK_BOX(hbox_button), button_1, TRUE, TRUE, 0);
+
+	g_signal_connect(G_OBJECT(button_2), "clicked", G_CALLBACK(changeCards), vbox_image);
+
+	gtk_box_pack_start(GTK_BOX(hbox_button), button_2, TRUE, TRUE, 0);
 
 	gtk_widget_show_all(window);
 
@@ -56,6 +52,16 @@ int main(int argc, char *argv[]){
 	return 0;
 }
 
-void cb_button_clicked(GtkWidget *button, gpointer user_data){
+void cbButtonClicked(GtkWidget *button_, gpointer user_data_){
 	gtk_main_quit();
+}
+
+void changeCards(GtkWidget *button_, gpointer user_data_){
+	GtkWidget *image_3;
+	//gtk_container_remove(GTK_CONTAINER(vbox), user_data_);
+	user_data_ = gtk_hbox_new(FALSE, 2);
+	gtk_box_pack_start(GTK_BOX(vbox), user_data_, TRUE, TRUE, 0);
+	image_3 = gtk_image_new_from_file("./cards/spade_3.png");
+	gtk_box_pack_start(GTK_BOX(user_data_), image_3, TRUE, TRUE, 0);
+	gtk_widget_show_all(window);
 }
