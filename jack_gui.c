@@ -10,13 +10,13 @@ void quitButtonClicked(GtkWidget *button_, gpointer user_data_){
 }
 
 void addCards(GtkWidget *button_, gpointer user_data_){
-	Gtk_widget *next_image;
+	GtkWidget *next_image;
 	Card ret_card;
 	Marks card_mark;
 	char image_name[30] = {"./cards/"};
 	char number_name[3];
 
-	ret_card = choiceCard(&cards);
+	ret_card = choiceCard(cards);
 	card_mark = ret_card.mark;
 	switch(card_mark){
 		case SPADE:
