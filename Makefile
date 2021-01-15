@@ -6,4 +6,3 @@ black_jack: black_jack.o jack_header.o jack_gui.o
 
 clean:
 	$(RM) *.o
-	$(RM) black_jack
