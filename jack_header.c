@@ -1,7 +1,7 @@
 #include "jack_header.h"
 #include <stdlib.h>
 
-Card choiceCard(Card *cards_){
+Card chooseCard(Card *cards_){
 	unsigned short int rand_num = rand() % (DEC_NUM * 52);
 
 	while(cards_[rand_num].flag == 1){
@@ -11,4 +11,29 @@ Card choiceCard(Card *cards_){
 	cards_[rand_num].flag = 1;
 
 	return cards_[rand_num];
+}
+
+unsigned short int calcCard(DealedCard target_card_){
+	unsigned short int eleven_num = 0;
+	unsigned short int card_sum = 0;
+	for(int i=0;i<=target_card_.card_count;i++){
+		if(target_card_.dealed_card[i].number > 10){
+			card_sum += 10;
+		}else if(target_card_.dealed_card[i].number == 1){
+			card_sum += 1;
+			eleven_num++;
+		}else{
+			card_sum += target_card_.dealed_card[i].number;
+		}
+	}
+
+	for(int i=0;i<eleven_num;i++){
+		if(card_sum > 11){
+			break;
+		}else{
+			card_sum += 10;
+		}
+	}
+
+	return card_sum;
 }

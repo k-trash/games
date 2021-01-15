@@ -10,6 +10,15 @@ typedef struct Card{
 	unsigned short int flag : 1;
 }Card;
 
+typedef struct DealedCard{
+	Card dealed_card[10];
+	unsigned short int card_count;
+}DealedCard;
+
 Card cards[DEC_NUM*52];
 
-Card choiceCard(Card *cards_);
+DealedCard player_card;
+DealedCard dealer_card;
+
+Card chooseCard(Card *cards_);
+unsigned short int calcCard(DealedCard target_card_);

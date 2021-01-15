@@ -7,14 +7,15 @@
 
 int main(int argc, char *argv[]){
 	unsigned short int count = 0;
-	Card player[10];
-	Card dealer[10];
 	GtkWidget *button_hit;
 	GtkWidget *button_stand;
 	GtkWidget *button_quit;
 	GtkWidget *player_hbox;
 	GtkWidget *dealer_hbox;
 	GtkWidget *button_hbox;
+
+	player_card.card_count = 0;
+	dealer_card.card_count = 0;
 
 	gtk_init(&argc, &argv);
 	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
@@ -52,8 +53,8 @@ int main(int argc, char *argv[]){
 
 	addCards(NULL, dealer_hbox);
 	addCards(NULL, dealer_hbox);
-	addCards(NULL, player_hbox);
-	addCards(NULL, player_hbox);
+	addCards(button_hit, player_hbox);
+	addCards(button_hit, player_hbox);
 
 	gtk_widget_show_all(window);
 

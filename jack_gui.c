@@ -10,7 +10,14 @@ void quitButtonClicked(GtkWidget *button_, gpointer user_data_){
 }
 
 void addCards(GtkWidget *button_, gpointer user_data_){
-	showCards(choiceCard(cards), (GtkWidget*)user_data_);
+	Card choice_card;
+	choice_card = chooseCard(cards);
+	if((void*)button_ != NULL){
+		player_card.dealed_card[player_card.card_count++] = choice_card;
+	}else{
+		dealer_card.dealed_card[dealer_card.card_count++] = choice_card;
+	}
+	showCards(choice_card, (GtkWidget*)user_data_);
 }
 
 void showCards(Card target_card_, GtkWidget *target_box_){
@@ -47,4 +54,8 @@ void showCards(Card target_card_, GtkWidget *target_box_){
 	next_image = gtk_image_new_from_file(image_name);
 	gtk_box_pack_start(GTK_BOX(target_box_), next_image, TRUE, TRUE, 0);
 	gtk_widget_show_all(window);
+
+	if(calcCard(player_card) > 21){
+		gtk_main_quit();
+	}
 }
