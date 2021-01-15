@@ -13,6 +13,7 @@ int main(int argc, char *argv[]){
 	GtkWidget *player_hbox;
 	GtkWidget *dealer_hbox;
 	GtkWidget *button_hbox;
+	GtkWidget *card_back;
 
 	player_card.card_count = 0;
 	dealer_card.card_count = 0;
@@ -26,6 +27,7 @@ int main(int argc, char *argv[]){
 	button_hit = gtk_button_new_with_label("Hit");
 	button_stand = gtk_button_new_with_label("Stand");
 	button_quit = gtk_button_new_with_label("Quit");
+	card_back = gtk_image_new_from_file("./cards/back.png");
 
 	gtk_widget_set_size_request(window, 600, 400);
 	gtk_container_add(GTK_CONTAINER(window), vbox);
@@ -51,7 +53,7 @@ int main(int argc, char *argv[]){
 		}
 	}
 
-	addCards(NULL, dealer_hbox);
+	gtk_box_pack_start(GTK_BOX(dealer_hbox), card_back, TRUE, TRUE, 0);
 	addCards(NULL, dealer_hbox);
 	addCards(button_hit, player_hbox);
 	addCards(button_hit, player_hbox);

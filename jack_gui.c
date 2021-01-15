@@ -41,10 +41,6 @@ void showCards(Card target_card_, GtkWidget *target_box_){
 			strcat(image_name, "dia_");
 			break;
 	}
-	
-	if(target_card_.number > 10){
-		target_card_.number = 10;
-	}
 
 	sprintf(number_name, "%d", target_card_.number);
 
