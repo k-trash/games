@@ -10,7 +10,7 @@ int main(int argc, char *argv[]){
 	Card player[10];
 	Card dealer[10];
 	GtkWidget *button_hit;
-	GtkWidget *button_stay;
+	GtkWidget *button_stand;
 	GtkWidget *button_quit;
 	GtkWidget *player_hbox;
 	GtkWidget *dealer_hbox;
@@ -23,16 +23,16 @@ int main(int argc, char *argv[]){
 	dealer_hbox = gtk_hbox_new(FALSE, 2);
 	button_hbox = gtk_hbox_new(FALSE, 2);
 	button_hit = gtk_button_new_with_label("Hit");
-	button_stay = gtk_button_new_with_label("Stay");
+	button_stand = gtk_button_new_with_label("Stand");
 	button_quit = gtk_button_new_with_label("Quit");
 
-	gtk_widget_set_size_request(window, 450, 300);
+	gtk_widget_set_size_request(window, 600, 400);
 	gtk_container_add(GTK_CONTAINER(window), vbox);
 	gtk_box_pack_start(GTK_BOX(vbox), dealer_hbox, TRUE, TRUE, 0);
 	gtk_box_pack_start(GTK_BOX(vbox), player_hbox, TRUE, TRUE, 0);
 	gtk_box_pack_start(GTK_BOX(vbox), button_hbox, TRUE, TRUE, 0);
 	gtk_box_pack_start(GTK_BOX(button_hbox), button_hit, TRUE, TRUE, 0);
-	gtk_box_pack_start(GTK_BOX(button_hbox), button_stay, TRUE, TRUE, 0);
+	gtk_box_pack_start(GTK_BOX(button_hbox), button_stand, TRUE, TRUE, 0);
 	gtk_box_pack_start(GTK_BOX(button_hbox), button_quit, TRUE, TRUE, 0);
 	g_signal_connect(G_OBJECT(button_hit), "clicked", G_CALLBACK(addCards), player_hbox);
 	g_signal_connect(G_OBJECT(button_quit), "clicked", G_CALLBACK(quitButtonClicked), NULL);
