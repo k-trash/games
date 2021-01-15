@@ -10,14 +10,16 @@ void quitButtonClicked(GtkWidget *button_, gpointer user_data_){
 }
 
 void addCards(GtkWidget *button_, gpointer user_data_){
+	showCards(choiceCard(cards), (GtkWidget*)user_data_);
+}
+
+void showCards(Card target_card_, GtkWidget *target_box_){
 	GtkWidget *next_image;
-	Card ret_card;
 	Marks card_mark;
 	char image_name[30] = {"./cards/"};
 	char number_name[3];
 
-	ret_card = choiceCard(cards);
-	card_mark = ret_card.mark;
+	card_mark = target_card_.mark;
 	switch(card_mark){
 		case SPADE:
 			strcat(image_name, "spade_");
@@ -33,16 +35,16 @@ void addCards(GtkWidget *button_, gpointer user_data_){
 			break;
 	}
 	
-	if(ret_card.number > 10){
-		ret_card.number = 10;
+	if(target_card_.number > 10){
+		target_card_.number = 10;
 	}
 
-	sprintf(number_name, "%d", ret_card.number);
+	sprintf(number_name, "%d", target_card_.number);
 
 	strcat(image_name, number_name);
 	strcat(image_name, ".png");
 
 	next_image = gtk_image_new_from_file(image_name);
-	gtk_box_pack_start(GTK_BOX(user_data_), next_image, TRUE, TRUE, 0);
+	gtk_box_pack_start(GTK_BOX(target_box_), next_image, TRUE, TRUE, 0);
 	gtk_widget_show_all(window);
 }
