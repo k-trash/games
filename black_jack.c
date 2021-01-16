@@ -7,12 +7,6 @@
 
 int main(int argc, char *argv[]){
 	unsigned short int count = 0;
-	GtkWidget *button_hit;
-	GtkWidget *button_stand;
-	GtkWidget *button_quit;
-	GtkWidget *player_hbox;
-	GtkWidget *dealer_hbox;
-	GtkWidget *button_hbox;
 	GtkWidget *card_back;
 
 	player_card.card_count = 0;
@@ -38,6 +32,7 @@ int main(int argc, char *argv[]){
 	gtk_box_pack_start(GTK_BOX(button_hbox), button_stand, TRUE, TRUE, 0);
 	gtk_box_pack_start(GTK_BOX(button_hbox), button_quit, TRUE, TRUE, 0);
 	g_signal_connect(G_OBJECT(button_hit), "clicked", G_CALLBACK(addCards), player_hbox);
+	g_signal_connect(G_OBJECT(button_stand), "clicked", G_CALLBACK(finishGame), NULL);
 	g_signal_connect(G_OBJECT(button_quit), "clicked", G_CALLBACK(quitButtonClicked), NULL);
 
 	srand((unsigned int)time(NULL));
@@ -54,6 +49,8 @@ int main(int argc, char *argv[]){
 	}
 
 	gtk_box_pack_start(GTK_BOX(dealer_hbox), card_back, TRUE, TRUE, 0);
+	dealer_card.dealed_card[0] = chooseCard(cards);
+	dealer_card.card_count++;
 	addCards(NULL, dealer_hbox);
 	addCards(button_hit, player_hbox);
 	addCards(button_hit, player_hbox);
