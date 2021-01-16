@@ -3,6 +3,8 @@
 #include <stdbool.h>
 #include "jack_header.h"
 
+bool finish_flag;
+
 GtkWidget *window;
 GtkWidget *vbox;
 GtkWidget *dealer_hbox;
@@ -11,10 +13,13 @@ GtkWidget *player_hbox;
 GtkWidget *button_hbox;
 GtkWidget *button_hit;
 GtkWidget *button_stand;
+GtkWidget *button_again;
 GtkWidget *button_quit;
 GtkWidget *telop_label;
 
 void quitButtonClicked(GtkWidget *button_, gpointer user_data_);
+
+void startAgain(GtkWidget *button_, gpointer user_data_);
 
 void setGui(void);
 

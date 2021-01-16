@@ -11,7 +11,7 @@ typedef struct Card{
 }Card;
 
 typedef struct DealedCard{
-	Card dealed_card[10];
+	Card dealed_card[21];
 	unsigned short int card_count;
 }DealedCard;
 
