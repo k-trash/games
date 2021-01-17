@@ -77,11 +77,11 @@ void setGui(void){
 	g_signal_connect(G_OBJECT(button_quit), "clicked", G_CALLBACK(quitButtonClicked), NULL);
 	g_signal_connect(G_OBJECT(button_again), "clicked", G_CALLBACK(startAgain), NULL);
 
-	for(int i=0;i<dealer_card.card_count;i++){
+	for(short int i=0;i<dealer_card.card_count;i++){
 		showCards(dealer_card.dealed_card[i], dealer_hbox, false);
 	}
 
-	for(int i=0;i<player_card.card_count;i++){
+	for(short int i=0;i<player_card.card_count;i++){
 		showCards(player_card.dealed_card[i], player_hbox, false);
 	}
 }

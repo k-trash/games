@@ -1,6 +1,5 @@
 #include <gtk/gtk.h>
 #include "jack_gui.h"
-#include "jack_header.h"
 
 int main(int argc, char *argv[]){
 	gtk_init(&argc, &argv);

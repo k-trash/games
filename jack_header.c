@@ -16,7 +16,7 @@ Card chooseCard(Card *cards_){
 unsigned short int calcCard(DealedCard target_card_){
 	unsigned short int eleven_num = 0;
 	unsigned short int card_sum = 0;
-	for(int i=0;i<target_card_.card_count;i++){
+	for(short int i=0;i<target_card_.card_count;i++){
 		if(target_card_.dealed_card[i].number > 10){
 			card_sum += 10;
 		}else if(target_card_.dealed_card[i].number == 1){
@@ -27,7 +27,7 @@ unsigned short int calcCard(DealedCard target_card_){
 		}
 	}
 
-	for(int i=0;i<eleven_num;i++){
+	for(short int i=0;i<eleven_num;i++){
 		if(card_sum > 11){
 			break;
 		}else{
